@@ -1,7 +1,7 @@
-/** Interest-bearing savings account (interest applied on every deposit) */
+/** savings accoung with interest (interest applied on every deposit) */
 public class SavingsAccount extends Account {
 
-    private final double annualRate;   // e.g. 0.019 represents 1.9 %
+    private final double annualRate;
 
     public SavingsAccount(String holder, double openingBalance, double rate) {
         super(holder, openingBalance);
@@ -17,15 +17,15 @@ public class SavingsAccount extends Account {
     @Override
     public void withdraw(double amount) {
         if (amount <= 0) {
-            System.out.println("✗ Withdrawal must be positive.");
+            System.out.println("Invalid, Withdrawal must be positive.");
             return;
         }
         if (amount > getBalance()) {
-            System.out.println("✗ Insufficient funds. Leave brokie. Get outta here.");
+            System.out.println("Invalid, Insufficient funds. Leave brokie. Get outta here.");
             return;
         }
         setBalance(getBalance() - amount);
-        System.out.printf("✓ $%.2f withdrawn.%n", amount);
+        System.out.printf(" $%.2f withdrawn.%n", amount);
     }
 
     private void applyMonthlyInterest() {

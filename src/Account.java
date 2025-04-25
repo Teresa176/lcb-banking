@@ -1,6 +1,6 @@
 /**
  * Abstract account class
- * Encapsulates holder name, immutable 4-digit account number, and balance.
+ * holder name, 4-digit account number, and balance
  */
 
 import java.util.Random;
@@ -8,7 +8,7 @@ import java.util.Random;
 public abstract class Account {
 
     private String holderName;
-    private final int accountNumber;       // 1000-9999, generated once
+    private final int accountNumber; // generates between 1000-9999
     private double balance;
 
     private static final Random RNG = new Random();
@@ -19,18 +19,19 @@ public abstract class Account {
         this.accountNumber = 1000 + RNG.nextInt(9000);
     }
 
-    /* ---------- basic accessors ---------- */
+    /* accessors */
 
     public int    getAccountNumber()        { return accountNumber; }
     public String getHolderName()           { return holderName;    }
     public double getBalance()              { return balance;       }
 
     public void   setHolderName(String name){ this.holderName = name; }
-
-    /** Protected helper – lets subclasses adjust balance safely */
     protected void setBalance(double newBal){ this.balance = newBal; }
 
-    /* ---------- common behaviour ---------- */
+    /**
+     * deposits the amount into the account
+     * @parameters amount of money deposited
+     */
 
     public void deposit(double amount) {
         if (amount <= 0) {
@@ -41,7 +42,10 @@ public abstract class Account {
         System.out.printf("✓ $%.2f deposited.%n", amount);
     }
 
-    /** Subclasses provide their own overdraft / interest logic */
+    /**
+     * withdraws amount from the account
+     * @parameters amount of money withdrawing
+     */
     public abstract void withdraw(double amount);
 
     @Override

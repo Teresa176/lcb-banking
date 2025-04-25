@@ -1,4 +1,4 @@
-/** Current account with an overdraft */
+/** checking account with overdraft */
 public class CheckingAccount extends Account {
 
     private final double overdraftLimit;
@@ -11,11 +11,11 @@ public class CheckingAccount extends Account {
     @Override
     public void withdraw(double amount) {
         if (amount <= 0) {
-            System.out.println("✗ Withdrawal must be positive.");
+            System.out.println("Invalid, Withdrawal must be positive.");
             return;
         }
         if (getBalance() - amount < -overdraftLimit) {
-            System.out.printf("✗ Transaction would exceed overdraft limit ($%.2f).%n", overdraftLimit);
+            System.out.printf("Invalid, Transaction would exceed overdraft limit ($%.2f).%n", overdraftLimit);
             return;
         }
         setBalance(getBalance() - amount);
